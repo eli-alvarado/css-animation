@@ -1,0 +1,187 @@
+body {
+    background: #364643;
+}
+
+.products-list {
+    display: flex;
+    align-items: center;
+    padding-bottom: 250px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.wrapper {
+    position: relative;
+    margin: 0 auto;
+    right: 0;
+    width: 50%;
+}
+
+.product-thumb {
+    position: relative;
+    cursor: pointer;
+    width: 27%;
+    margin-top: 30px;
+}
+
+.product-thumb img {
+    width: 100%;
+    display: block;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+    border-radius: 20%;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.product-thumb img.sombra-icepop {
+    z-index: -1
+}
+
+.product-thumb img.mordisco {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0s;
+    opacity: 0
+}
+
+.product-thumb .img {
+    animation: float 2s ease-in-out infinite;
+    animation-play-state: paused;
+    position: relative;
+    z-index: 2
+}
+
+.product-thumb .product-description {
+    position: absolute;
+    top: calc(100% - 85px);
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 200%;
+    height: 170%;
+    border-radius: 50%;
+    background: rgba(0,0,0,.9);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+    padding: 0 40px;
+    padding-top: 140px;
+    padding-bottom: 50px;
+    text-align: center;
+    transform-origin: center top;
+    box-shadow: 0 0 24px 5px rgba(0, 0, 0, .05)
+}
+
+.products-list .product-thumb .product-description {
+    padding-top: 90px
+}
+
+.product-description strong {
+    font-size: 22px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+    transform: translateY(-10px);
+    opacity: 0;
+    display: block;
+}
+
+.product-description p {
+    font-size: 15px;
+    width: 80%;
+    margin: 5px auto;
+    font-family: Helvetica, sans-serif;
+    margin-top: 5px;
+    line-height: 1.31;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+    display: block;
+    letter-spacing: 2px;
+    transform: translateY(-10px);
+    opacity: 0;
+}
+
+.product-description .plus {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    margin-top: 10px
+}
+
+.product-description .plus div {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 1px;
+    background: var(--black);
+    transition: all .5s cubic-bezier(.25, .8, .25, 1)
+}
+
+.product-description .plus div:last-child {
+    width: 1px;
+    height: 0;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: translateY(-50%)
+}
+
+.product-description .product-inner {
+    position: relative;
+    height: 100%
+}
+
+.product-description .product-inner-abs {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    color: white;
+}
+
+.product-thumb:hover img.mordisco {
+    opacity: 1;
+    transition-delay: .6s
+}
+.product-thumb:not(.no-animation-hover):hover .img-wrap {
+    animation: bite .5s .6s
+}
+.product-thumb:hover .product-description {
+    top: 70%;
+    transform: translateX(-50%) scale(.8);
+}
+.product-thumb:hover {
+    z-index: 5;
+}
+.product-thumb:hover .img {
+    animation-play-state: running;
+}
+.product-thumb:hover .product-description p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .45s
+}
+.product-thumb:hover .product-description strong {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .35s
+}
+.product-thumb:hover .img img {
+    transform: scale(1.2)
+}
+.product-thumb:hover .product-description .plus div:first-child {
+    width: 100%;
+    transition-delay: .55s
+}
+.product-thumb:hover .product-description .plus div:last-child {
+    height: 100%;
+    transition-delay: .5s
+}

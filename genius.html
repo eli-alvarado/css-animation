@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="genius.css">
+    <title>G E N I U S</title>
+</head>
+<body>
+    <form action="">
+<input type="text" id="lyric-search" placeholder="for an artist..." value=""> 
+<input type="submit" id="submit-btn">
+</form>
+<div class="songs-container products-list wrapper"></div>
+
+
+
+
+<div class="product-thumb" data-category-id="icepops" data-subcategory-id="frutales,veganos" data-subcategory-id-eng="fruit,vegan" style="opacity: 0; transform: translate(0px, 50px); display: none;">
+    <div class="img">
+        <div class="img-wrap">
+            <img src="https://luccianos.net/assets/img/products/icepops/limon.png" alt="IcePop">
+            <img src="https://luccianos.net/assets/img/mordido.png" class="mordisco" alt="IcePop">
+        </div>
+    </div>
+    <img src="https://luccianos.net/assets/img/products/icepops/sombra-icepop.png" alt="Sombra" class="sombra-icepop">
+    <div class="product-description" style="background-color: #e6dbce;">
+        <div class="product-inner">
+            <div class="product-inner-abs">
+                <strong>LEMON</strong>
+                <p>
+                    Icepop made with freshly squeezed lemon juice.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+var submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', runScript);
+
+    function runScript(e) {
+        e.preventDefault();
+        var query = document.getElementById('lyric-search').value;
+    var token = 'FV09E_sWX2SHAZ5yzk440-ZFYjCDO0GME3B5VP3PPKX2b5KN8lUND1lZYOFKsmS_';
+    var url = 'https://api.genius.com/search?access_token=' + token + '&q=' + encodeURIComponent(query);
+        var myHeaders = new Headers();
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    var song = document.getElementsByClassName('songs-container')[0];
+
+    fetch(url,  requestOptions)
+      .then(response => response.json())
+      .then(data => {
+          console.log(data)
+          data.response.hits.forEach(item => {
+
+            var contentContainerTag = document.createElement('div')
+            contentContainerTag.classList.add('content-info-container');
+
+            var songTitleTag = document.createElement('p');
+            songTitleTag.classList.add('song-title-name');
+            song.appendChild(songTitleTag);
+            var songTitleContent = document.createTextNode(item.result.full_title);
+            songTitleTag.appendChild(songTitleContent);
+
+
+            var coverTag = document.createElement("div");
+            coverTag.classList.add('cover-image');
+            var coverImage = document.createElement("img");
+            coverImage.setAttribute("src", item.result.song_art_image_url);
+            coverTag.appendChild(coverImage);
+            song.appendChild(coverTag);
+
+            song.appendChild(contentContainerTag)
+            contentContainerTag.appendChild(coverTag)
+            contentContainerTag.appendChild(songTitleTag)
+            
+
+          })
+      })
+      .catch(error => console.log('error', error));
+    }
+</script>
+
+</body>
+</html>

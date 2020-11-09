@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cover-image img {
+    width: 200px;
+}
+
+.songs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.content-info-container {
+    width: 27%;
+}
